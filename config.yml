@@ -106,7 +106,7 @@ categories:
   Rating: ["rating", "target price", "upgrade", "downgrade"]
 
 telegram:
-  channel_chat_id: "-1001234567890"  # Sostituisci con il tuo chat id
+  channel_chat_id: "-1003439555385"  # Sostituisci con il tuo chat id
   parse_mode: "HTML"
   add_source_hashtag: true
   add_time: true
