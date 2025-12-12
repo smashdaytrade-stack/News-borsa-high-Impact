@@ -23,4 +23,4 @@ python newsbot.py
 
 ## Note
 - Il bot pubblica **titolo + link** e hashtag categorie.
-- Dedup su SQLite: `data/seen.db` viene committato dal workflow.
+- Dedup su SQLite: `data/seen.db` viene committato dal workflow....
