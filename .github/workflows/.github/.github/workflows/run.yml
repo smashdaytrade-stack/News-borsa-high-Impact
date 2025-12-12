@@ -1,0 +1,55 @@
+
+name: Price Sensitive News Bot
+
+on:
+  schedule:
+    - cron: "*/5 * * * *"   # Esegue ogni 5 minuti
+  workflow_dispatch:         # Permette l'avvio manuale dal tab Actions
+
+jobs:
+  run:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          persist-credentials: false          persist-credentials: false
+
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.11"
+
+      - name: Install deps
+        run: |
+          python -m pip install --upgrade pip
+          pip install -r requirements.txt
+
+      - name: Prepare data folder
+        run: |
+          mkdir -p data
+
+      - name: Run bot
+        env:
+          BOT_TOKEN: ${{ secrets.BOT_TOKEN }}              # Token Telegram (BotFather)
+          CHANNEL_USERNAME: ${{ secrets.CHANNEL_USERNAME }} # senza @ (opzionale)
+        run: |
+          python newsbot.py
+
+      # Commit del DB per mantenere la dedup tra run
+      - name: Commit dedup DB
+        if: always()
+        run: |
+          if [ -n "$(git status --porcelain data/seen.db)" ]; then
+            git config user.name "news-bot"
+            git config user.email "bot@users.noreply.github.com"
+            git add data/seen.db
+            git commit -m "chore: update seen db [skip ci]" || echo "nothing to commit"
+          fi
+
+      - name: Push changes
+        if: always()
+        uses: ad-m/github-push-action@v0.8.0
+        with:
+          github_token: ${{ secrets.GH_PAT }}   # Personal Access Token GitHub (scope repo)
