@@ -1,0 +1,125 @@
+
+# ====== FONTI RSS ======
+sources:
+  - name: "ANSA Finanza"
+    url: "https://www.ansa.it/sito/ansait_rss/italia/economia_finanza.xml"
+    language: "it"
+  - name: "Investing.com (IT)"
+    url: "https://it.investing.com/rss/news.rss"
+    language: "it"
+  # Aggiungi eventuali feed ufficiali price-sensitive di Borsa Italiana quando disponibili
+
+# ====== FILTRI ======
+filters:
+  min_score: 2
+  include_keywords:
+    - "profit warning"
+    - "profit alert"
+    - "guidance"
+    - "revisione al ribasso"
+    - "revisione al rialzo"
+    - "utile"
+    - "ricavi"
+    - "fatturato"
+    - "ebit"
+    - "ebitda"
+    - "margin"
+    - "dividendo"
+    - "stacco cedola"
+    - "buyback"
+    - "riacquisto azioni"
+    - "aumento di capitale"
+    - "opa"
+    - "offerta pubblica"
+    - "fusione"
+    - "merger"
+    - "acquisizione"
+    - "m&a"
+    - "delisting"
+    - "sospensione"
+    - "riammissione"
+    - "consob"
+    - "antitrust"
+    - "agcm"
+    - "sec indagine"
+    - "commissione"
+    - "class action"
+    - "contratto"
+    - "commessa"
+    - "ordinativo"
+    - "partnership"
+    - "licenza"
+    - "brevetto"
+    - "outlook"
+    - "rating"
+    - "target price"
+    - "upgrade"
+    - "downgrade"
+    - "earnings"
+    - "revenue"
+    - "guidance cut"
+    - "guidance raise"
+    - "profit"
+    - "dividend"
+    - "capital increase"
+    - "tender offer"
+    - "acquisition"
+    - "merger"
+    - "antitrust"
+    - "investigation"
+    - "fine"
+    - "contract"
+    - "order"
+    - "ceo resigns"
+    - "cfo resigns"
+    - "delisting"
+  exclude_keywords:
+    - "rumor"
+    - "gossip"
+    - "opinion"
+    - "analisi tecnica"
+    - "pre-market"
+    - "pubblicità"
+    - "sponsor"
+    - "blog"
+    - "commento"
+    - "chiusura mercati"
+
+companies:
+  - name: "ENEL"
+    tickers: ["ENEL", "ENEL.MI", "BIT:ENEL"]
+    boost: 1
+  - name: "ENI"
+    tickers: ["ENI", "ENI.MI", "BIT:ENI"]
+    boost: 1
+
+categories:
+  M&A: ["opa", "offerta pubblica", "acquisizione", "merger", "fusione", "m&a", "delisting"]
+  Guidance: ["guidance", "profit warning", "profit alert", "revisione al ribasso", "revisione al rialzo", "outlook"]
+  Conti: ["utile", "ricavi", "fatturato", "ebit", "ebitda", "earnings", "revenue", "profit"]
+  Dividendi: ["dividendo", "stacco cedola", "dividend"]
+  Buyback: ["buyback", "riacquisto azioni"]
+  Capitale: ["aumento di capitale", "capital increase"]
+  Antitrust: ["antitrust", "agcm", "consob", "sec", "investigation", "fine"]
+  Contratti: ["contratto", "commessa", "ordinativo", "contract", "order", "partnership"]
+  Management: ["ceo", "cfo", "dimissioni", "resigns", "nomina"]
+  Rating: ["rating", "target price", "upgrade", "downgrade"]
+
+telegram:
+  channel_chat_id: "-1001234567890"  # Sostituisci con il tuo chat id
+  parse_mode: "HTML"
+  add_source_hashtag: true
+  add_time: true
+  index_message:
+    enabled: true
+    post_every_hours: 24
+    buttons:
+      - { text: "🧩 M&A", url_query: "%23M_A" }
+      - { text: "📈 Guidance", url_query: "%23Guidance" }
+      - { text: "🧮 Conti", url_query: "%23Conti" }
+      - { text: "💸 Dividendi", url_query: "%23Dividendi" }
+      - { text: "🔁 Buyback", url_query: "%23Buyback" }
+      - { text: "🏛️ Antitrust", url_query: "%23Antitrust" }
+      - { text: "📜 Contratti", url_query: "%23Contratti" }
+      - { text: "👤 Management", url_query: "%23Management" }
+      - { text: "⭐ Rating", url_query: "%23Rating" }
