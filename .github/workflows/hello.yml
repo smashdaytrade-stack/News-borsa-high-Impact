@@ -1,0 +1,12 @@
+
+name: Hello Minimal
+
+on: [workflow_dispatch]  # Avvio manuale dal tab Actions
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Echo
+        run: echo "Workflow ok"
+``
